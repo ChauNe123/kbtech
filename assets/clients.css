@@ -1,0 +1,174 @@
+/* =================================================================
+   FILE: assets/clients.css (FINAL OPTIMIZED)
+   GIAO DIỆN KHÁCH HÀNG: CLEAN WHITE (TRẮNG SẠCH & HIỆN ĐẠI)
+================================================================= */
+
+/* 1. NỀN TRẮNG ĐỒNG BỘ */
+body.client-page {
+    background-color: #ffffff;
+    color: #333;
+    font-family: 'Montserrat', sans-serif;
+    background-image: radial-gradient(#e5e5e5 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+/* 2. HEADER GIỚI THIỆU */
+.clients-hero {
+    padding: 160px 20px 60px; /* Padding chuẩn cho fixed header */
+    text-align: center;
+    background: linear-gradient(to bottom, #fff, #f9f9f9);
+    border-bottom: 1px solid #eee;
+}
+
+.clients-hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    color: #222;
+    letter-spacing: -1px;
+}
+
+.clients-hero h1 span.highlight {
+    color: #cc0000;
+    position: relative;
+    display: inline-block;
+}
+
+.clients-hero h1 span.highlight::after {
+    content: '';
+    position: absolute;
+    width: 100%; height: 4px;
+    bottom: 5px; left: 0;
+    background: rgba(204, 0, 0, 0.1);
+    z-index: -1;
+}
+
+.clients-hero p {
+    color: #555; /* Đậm hơn chút cho dễ đọc */
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* 3. KHUNG LƯỚI LOGO (GRID) */
+.clients-grid-section {
+    padding: 60px 20px 100px;
+    background: #fff;
+}
+
+.clients-grid {
+    display: grid;
+    /* Tự động chia cột thông minh */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 4. Ô CHỨA LOGO (TECH CARD) */
+.tech-card {
+    height: 160px;
+    background: #ffffff;
+    border: 1px solid #f0f0f0; 
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    
+    /* Animation mượt */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    will-change: transform, box-shadow; /* Tối ưu hiệu năng render */
+}
+
+/* Logo bên trong */
+.tech-card img {
+    max-width: 85%;
+    max-height: 90px;
+    object-fit: contain;
+    filter: grayscale(100%) opacity(0.6);
+    transition: all 0.4s ease;
+    transform: scale(0.95);
+}
+
+/* Hiệu ứng Hover */
+.tech-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08); 
+    border-color: #ffe5e5;
+}
+
+.tech-card:hover img {
+    filter: grayscale(0%) opacity(1);
+    transform: scale(1.05);
+}
+
+/* Vạch đỏ trang trí đáy */
+.tech-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0%; height: 3px;
+    background: #cc0000;
+    transition: width 0.3s ease;
+}
+
+.tech-card:hover::after {
+    width: 100%;
+}
+
+/* 5. NÚT LIÊN HỆ CUỐI TRANG */
+.client-cta {
+    text-align: center;
+    margin-top: 80px;
+}
+.client-cta h3 {
+    color: #222; font-size: 1.5rem; margin-bottom: 25px; font-weight: 700;
+}
+
+.btn-glow {
+    display: inline-block; padding: 15px 40px;
+    background: #cc0000; color: #fff;
+    font-weight: 700; text-transform: uppercase; text-decoration: none;
+    border-radius: 50px; transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(204, 0, 0, 0.3);
+}
+
+.btn-glow:hover {
+    background: #b30000; transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(204, 0, 0, 0.4);
+}
+
+/* =========================================================
+   6. MOBILE RESPONSIVE (ĐÃ TỐI ƯU)
+========================================================= */
+@media (max-width: 768px) {
+    .clients-hero { padding-top: 130px; padding-bottom: 40px; }
+    .clients-hero h1 { font-size: 1.8rem; }
+    .clients-hero p { font-size: 0.95rem; padding: 0 15px; }
+    
+    .clients-grid { 
+        grid-template-columns: repeat(2, 1fr); /* 2 Cột trên điện thoại */
+        gap: 15px; 
+    }
+    
+    .tech-card { 
+        height: 120px; 
+        padding: 15px; 
+        border-radius: 12px;
+    }
+    
+    .tech-card img { max-height: 60px; }
+    .client-cta { margin-top: 50px; }
+    .client-cta h3 { font-size: 1.2rem; padding: 0 10px; }
+}
+
+@media (max-width: 360px) {
+    /* Với màn hình siêu nhỏ thì về 1 cột cho thoáng */
+    .clients-grid { grid-template-columns: 1fr; }
+}

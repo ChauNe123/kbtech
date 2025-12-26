@@ -1,0 +1,118 @@
+/* CUSTOMER SLIDER */
+.customer-slider-section {
+  width: 100%;
+  background: #fff;
+  padding: 60px 0 40px 0;
+  margin: 0 auto;
+}
+.customer-slider-title {
+  text-align: center;
+  font-size: 2.6em;
+  color: #a81c3a;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 36px;
+}
+.customer-slider-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1600px;
+  margin: 0 auto;
+  position: relative;
+}
+.customer-slider-track {
+  display: flex;
+  gap: 32px;
+  transition: transform 0.7s cubic-bezier(.4,0,.2,1);
+  will-change: transform;
+  overflow: visible;
+}
+.customer-slide {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+  padding: 18px 18px 12px 18px;
+  min-width: 220px;
+  max-width: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.2s;
+}
+.customer-slide img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  border: 1.5px solid #eee;
+}
+.customer-name {
+  font-size: 1.1em;
+  font-weight: 700;
+  color: #a81c3a;
+  text-align: center;
+  margin-top: 4px;
+  letter-spacing: 0.5px;
+}
+.customer-arrow {
+  background: rgba(255,255,255,0.95);
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6em;
+  color: #a81c3a;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  cursor: pointer;
+  margin: 0 18px;
+  z-index: 10;
+  transition: background 0.2s;
+}
+.customer-arrow:hover {
+  background: #ffe5eb;
+}
+@media (max-width: 1200px) {
+  .customer-slider-track {
+    gap: 18px;
+  }
+  .customer-slide {
+    min-width: 160px;
+    max-width: 160px;
+  }
+  .customer-slide img {
+    width: 120px;
+    height: 120px;
+  }
+}
+@media (max-width: 700px) {
+  .customer-slider-title {
+    font-size: 1.3em;
+  }
+  .customer-slider-section {
+    padding: 30px 0 20px 0;
+  }
+  .customer-slider-track {
+    gap: 8px;
+  }
+  .customer-slide {
+    min-width: 110px;
+    max-width: 110px;
+    padding: 8px 4px 6px 4px;
+  }
+  .customer-slide img {
+    width: 70px;
+    height: 70px;
+  }
+  .customer-arrow {
+    width: 32px;
+    height: 32px;
+    font-size: 1em;
+    margin: 0 4px;
+  }
+}
