@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Điều Khoản Sử Dụng Dịch Vụ - KB Tech</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    
+    <link rel="stylesheet" href="assets/style.css">
+    
+    <style>
+        /* --- CSS RIÊNG CHO TRANG ĐIỀU KHOẢN (Đồng bộ với Privacy) --- */
+        .policy-wrapper {
+            background-color: #f0f2f5;
+            padding-top: 130px;
+            padding-bottom: 80px;
+        }
+        .policy-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 50px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border-radius: 12px;
+        }
+        
+        .policy-header {
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 30px;
+            margin-bottom: 40px;
+        }
+        .policy-header h1 {
+            font-size: 2.2rem;
+            color: #1a1a1a;
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        
+        /* Style cho các mục nội dung */
+        .policy-section { margin-bottom: 50px; }
+        .policy-section h2 { 
+            font-size: 1.4rem; color: #000000; font-weight: 700; margin-bottom: 20px; 
+            border-left: 5px solid #ff0004; padding-left: 15px;
+        }
+        .policy-section h3 {
+            font-size: 1.1rem; color: #333; font-weight: 700; margin-top: 25px; margin-bottom: 10px;
+        }
+        .policy-section p, .policy-section li {
+            font-size: 0.95rem; color: #444; line-height: 1.6; text-align: justify;
+        }
+        .policy-section ul { padding-left: 20px; margin-bottom: 15px; }
+        .policy-section ul li { margin-bottom: 8px; list-style-type: disc; }
+
+        /* GRID 8 DỊCH VỤ (Tái sử dụng style đẹp) */
+        .service-terms-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 cột */
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .service-term-card {
+            background: #fff;
+            border: 1px solid #e1e4e8;
+            padding: 25px 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .service-term-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            border-color: #ff0000;
+        }
+        .service-term-card i {
+            font-size: 1.8rem; color: #ff0000; margin-bottom: 15px;
+            background: #f0f7ff; width: 50px; height: 50px; line-height: 50px; border-radius: 50%;
+        }
+        .service-term-card h4 {
+            font-size: 0.95rem; font-weight: 700; color: #222; margin-bottom: 10px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .service-term-card p {
+            font-size: 0.85rem; color: #555; text-align: justify; margin: 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) { .service-terms-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { 
+            .service-terms-grid { grid-template-columns: 1fr; } 
+            .policy-container { padding: 20px; }
+            .policy-header h1 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="top-bar" id="topBar">
+        <div class="container">
+            <div class="top-bar-search">
+                <input type="text" placeholder="Bạn tìm gì...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            <div class="top-bar-links">
+                <span class="top-bar-item"><a href="index.html">Trang chủ</a></span>
+                <span class="top-bar-item"><a href="https://zalo.me/0933129155">Liên hệ</a></span>
+            </div>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <div class="navbar container">   
+            <button class="menu-toggle"><span></span><span></span><span></span></button>
+            <a href="index.html" class="logo"><img src="img/logo.png" alt="KB Logo"></a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">TRANG CHỦ</a></li>
+                    <li><a href="about.html">GIỚI THIỆU</a></li>
+                    <li><a href="service.html">DỊCH VỤ</a></li>
+                    <li><a href="clients.html">KHÁCH HÀNG</a></li>
+                </ul>
+            </nav>
+            <div></div>
+        </div>
+    </header>
+
+    <div class="policy-wrapper">
+        <div class="policy-container">
+            
+            <div class="policy-header">
+                <h1>ĐIỀU KHOẢN <span style="color: #ff4d4f;">SỬ DỤNG DỊCH VỤ</span></h1>
+                <p>Hiệu lực từ ngày: 01/01/2026</p>
+            </div>
+
+            <div class="policy-body">
+                
+                <div class="policy-section">
+                    <h2>1. Quy Định Chung</h2>
+                    <p>Chào mừng Quý khách đến với KB Tech. Khi sử dụng dịch vụ của chúng tôi (bao gồm mua phần cứng, thuê máy chủ, hoặc sử dụng dịch vụ kỹ thuật), Quý khách mặc nhiên đồng ý với các điều khoản dưới đây. KB Tech có quyền thay đổi, chỉnh sửa các điều khoản này để phù hợp với quy định pháp luật và tình hình kinh doanh mà không cần báo trước.</p>
+                </div>
+
+                <div class="policy-section">
+                    <h2>2. Quy Định Chi Tiết Từng Dịch Vụ</h2>
+                    <p>Để đảm bảo quyền lợi và trách nhiệm rõ ràng, chúng tôi quy định cụ thể cho từng nhóm dịch vụ như sau:</p>
+                    
+                    <div class="service-terms-grid">
+                        
+                        <div class="service-term-card">
+                            <i class="fas fa-server"></i>
+                            <h4>Máy Chủ (Server)</h4>
+                            <p>Khách hàng chịu trách nhiệm hoàn toàn về nội dung lưu trữ. Nghiêm cấm sử dụng Server để tấn công mạng (DDOS), spam mail hoặc lưu trữ nội dung vi phạm pháp luật VN. KB Tech có quyền ngưng dịch vụ nếu vi phạm.</p>
+                        </div>
+
+                        <div class="service-term-card">
+                            <i class="fas fa-envelope-open-text"></i>
+                            <h4>Email Doanh Nghiệp</h4>
+                            <p>Không sử dụng Email để phát tán thư rác (Spam/Phishing). Nếu IP của Email bị tổ chức quốc tế (Blacklist) chặn do hành vi spam của khách hàng, chúng tôi không chịu trách nhiệm hoàn tiền.</p>
+                        </div>
+
+                        <div class="service-term-card">
+                            <i class="fas fa-user-shield"></i>
+                            <h4>Bảo Mật (Security)</h4>
+                            <p>Dịch vụ Security cung cấp các giải pháp phòng vệ tốt nhất theo tiêu chuẩn hãng. Tuy nhiên, không có hệ thống nào an toàn 100%. Chúng tôi không chịu trách nhiệm pháp lý cho các thiệt hại do các cuộc tấn công mạng bất khả kháng (Zero-day).</p>
+                        </div>
+
+                        <div class="service-term-card">
+                            <i class="fas fa-tools"></i>
+                            <h4>Sửa Chữa PC</h4>
+                            <p>KB Tech không chịu trách nhiệm về dữ liệu trong máy khi sửa chữa phần cứng. Khách hàng BẮT BUỘC phải sao lưu dữ liệu quan trọng trước khi giao máy. Thời gian bảo hành sửa chữa là 01-03 tháng tùy lỗi.</p>
+                        </div>
+
+                        <div class="service-term-card">
+                            <i class="fas fa-hdd"></i>
+                            <h4>Lưu Trữ NAS</h4>
+                            <p>Khách hàng có trách nhiệm quản lý tài khoản truy cập. Chúng tôi không chịu trách nhiệm nếu dữ liệu bị mất do khách hàng xóa nhầm, hoặc do thiết bị hỏng hóc vật lý (nếu không mua gói bảo hành vàng).</p>
+                        </div>
+
+                        <div class="service-term-card">
+                            <i class="fas fa-headset"></i>
+                            <h4>IT Helpdesk</h4>
+                            <p>Dịch vụ hỗ trợ 24/7 áp dụng cho các sự cố khẩn cấp (Server down, hệ thống tê liệt). Các yêu cầu cài đặt phần mềm thông thường sẽ được xử lý trong giờ hành chính. Thời gian phản hồi cam kết: 2h (nội thành).</p>
+                        </div>
+
+                        <div class="service-term-card">
+                            <i class="fas fa-video"></i>
+                            <h4>Camera AI</h4>
+                            <p>Khách hàng chịu trách nhiệm pháp lý về vị trí lắp đặt camera và quyền riêng tư của người bị quay. KB Tech chỉ cung cấp thiết bị và thi công, không chịu trách nhiệm về mục đích sử dụng hình ảnh của khách hàng.</p>
+                        </div>
+
+                        <div class="service-term-card">
+                            <i class="fas fa-desktop"></i>
+                            <h4>Build PC</h4>
+                            <p>Bảo hành theo tiêu chuẩn nhà sản xuất (36 tháng cho linh kiện chính). Không bảo hành trong trường hợp: Cháy nổ, vào nước, côn trùng xâm nhập, hoặc tem bảo hành bị rách/tẩy xóa.</p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="policy-section">
+                    <h2>3. Chính Sách Thanh Toán & Gia Hạn</h2>
+                    <ul>
+                        <li><strong>Dịch vụ phần cứng (PC, Camera, NAS):</strong> Thanh toán 100% sau khi lắp đặt và bàn giao nghiệm thu.</li>
+                        <li><strong>Dịch vụ định kỳ (Server, Email, Tên miền):</strong> Khách hàng cần thanh toán phí gia hạn trước 07 ngày khi hết hạn.</li>
+                        <li><strong>Hủy dịch vụ:</strong> Nếu quá hạn thanh toán 15 ngày, hệ thống sẽ tự động tạm ngưng dịch vụ. Sau 30 ngày, dữ liệu có thể bị xóa vĩnh viễn và không thể khôi phục.</li>
+                    </ul>
+                </div>
+
+                <div class="policy-section">
+                    <h2>4. Chính Sách Bảo Hành & Đổi Trả</h2>
+                    <ul>
+                        <li><strong>1 đổi 1:</strong> Áp dụng trong 30 ngày đầu nếu có lỗi phần cứng từ nhà sản xuất (đối với PC, Linh kiện mới).</li>
+                        <li><strong>Bảo hành tận nơi:</strong> Áp dụng cho khách hàng doanh nghiệp có ký hợp đồng bảo trì hoặc trong phạm vi nội thành TP.HCM (có tính phí đi lại nếu hết hạn bảo hành).</li>
+                        <li><strong>Từ chối bảo hành:</strong> Thiết bị hư hỏng do thiên tai, sét đánh, sử dụng sai điện áp hoặc có dấu hiệu cạy sửa từ bên thứ 3.</li>
+                    </ul>
+                </div>
+
+                <div class="policy-section">
+                    <h2>5. Giới Hạn Trách Nhiệm</h2>
+                    <p>Trong mọi trường hợp, tổng trách nhiệm bồi thường của KB Tech (nếu có) sẽ không vượt quá giá trị hợp đồng hoặc phí dịch vụ mà khách hàng đã thanh toán trong 03 tháng gần nhất. Chúng tôi không chịu trách nhiệm cho các thiệt hại gián tiếp (mất doanh thu, gián đoạn kinh doanh) phát sinh từ việc sử dụng dịch vụ.</p>
+                </div>
+
+                <div class="policy-section">
+                    <h2>6. Liên Hệ Hỗ Trợ</h2>
+                    <p>Mọi thắc mắc về điều khoản dịch vụ, xin vui lòng liên hệ:</p>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> <strong>Văn phòng giao dịch:</strong> 341/25 S - 341/26 S Lạc Long Quân, P.Hoà Bình, TP.HCM</li>
+                        <li><i class="fas fa-wrench"></i> <strong>Trung tâm kỹ thuật:</strong> 21 đường số 7, P.Bình Thới, Cư xá Bình Thới</li>
+                        <li><i class="fas fa-phone-alt"></i> <strong>Hotline 24/7:</strong> 0933 129 155</li>
+                        <li><i class="fas fa-envelope"></i> <strong>Email:</strong> info@kbtech.vn</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col brand-col">
+                    <h2 class="footer-logo">KB</h2> 
+                    <p class="slogan-footer">"Tạo dựng xu hướng - định hình tương lai."</p>
+                    
+                    <div id="contactDock" class="contact-dock-area">
+                        <div id="floatingGroup" class="floating-contact">
+                            <div class="circle-btn phone-btn" id="btnCallSupport" title="Gọi hỗ trợ trực tiếp">
+                                <i class="fas fa-phone-alt"></i>
+                                <span class="pulse-ring"></span>
+                            </div>
+                            <a href="https://zalo.me/0933129155" target="_blank" rel="noopener noreferrer" class="circle-btn zalo-btn" title="Chat Zalo">
+                                <img src="icon/Icon_of_Zalo.svg.webp" alt="Zalo" class="btn-icon-img">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-col links-col">
+                    <h4>VỀ KB</h4>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-angle-right"></i> Trang Chủ</a></li>
+                        <li><a href="about.html"><i class="fas fa-angle-right"></i> Giới Thiệu</a></li>
+                        <li><a href="service.html"><i class="fas fa-angle-right"></i> Dịch Vụ</a></li>
+                        <li><a href="term.html"><i class="fas fa-angle-right"></i> Điều khoản</a></li>
+                        <li><a href="privacy.html"><i class="fas fa-angle-right"></i> Chính sách</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col contact-col">
+                    <h4>VĂN PHÒNG</h4>
+                    <div class="contact-info">
+                        <div class="item"><i class="fas fa-map-marker-alt"></i> <span>341/25 S - 341/26 S Lạc Long Quân, P.Hoà Bình, TP.HCM</span></div>
+                        <div class="item"><i class="fas fa-phone-alt"></i> <span>0933 129 155</span></div>
+                        <div class="item"><i class="fas fa-envelope"></i> <span>info@kbtech.vn</span></div>
+                    </div>
+                </div>
+
+                <div class="footer-col contact-col">
+                    <h4>KỸ THUẬT</h4>
+                    <div class="contact-info">
+                        <div class="item"><i class="fas fa-wrench"></i> <span>21 đường số 7, P.Bình Thới, Cư xá Bình Thới</span></div>
+                        <div class="item"><i class="fas fa-phone-alt"></i> <span>0909 340 014</span></div>
+                        <div class="item"><i class="fas fa-envelope"></i> <span>technical@kbtech.vn</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="copyright-bar">
+            <div class="container">
+                <p>&copy; 2025 <strong>KB</strong>. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
