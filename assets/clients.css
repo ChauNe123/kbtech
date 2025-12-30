@@ -172,3 +172,21 @@ body.client-page {
     /* Với màn hình siêu nhỏ thì về 1 cột cho thoáng */
     .clients-grid { grid-template-columns: 1fr; }
 }
+
+/* Thêm vào cuối assets/clients.css */
+@media (max-width: 480px) {
+    .clients-grid {
+        grid-template-columns: repeat(2, 1fr); /* Ép buộc 2 cột */
+        gap: 10px; /* Giảm khoảng cách */
+    }
+    .tech-card {
+        height: 100px; /* Giảm chiều cao thẻ */
+        padding: 10px;
+    }
+    .tech-card img {
+        max-height: 50px; /* Giảm kích thước logo */
+    }
+    .clients-hero h1 {
+        font-size: 1.8rem; /* Tiêu đề nhỏ lại */
+    }
+}

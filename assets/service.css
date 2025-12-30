@@ -502,3 +502,63 @@ body {
     .action-title { font-size: 15px; }
     .action-sub { font-size: 12px; }
 }
+
+/* ======================================================
+   MOBILE OPTIMIZATION PATCH (SERVICE.CSS)
+====================================================== */
+@media (max-width: 1024px) {
+    /* 1. Layout phẳng hóa (Flat Layout) - Tắt 3D */
+    .svc-img-col {
+        perspective: none;
+        margin-bottom: 30px;
+    }
+    
+    /* Card ảnh trên mobile */
+    .img-3d-box, .svc-block.reverse .img-3d-box {
+        transform: none !important;
+        height: auto; 
+        aspect-ratio: 16/9; /* Tỉ lệ chuẩn ảnh */
+        width: 100%;
+        max-width: 100%;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    /* Badge icon nhỏ lại và đặt góc đẹp hơn */
+    .floating-badge {
+        width: 50px; height: 50px;
+        font-size: 20px;
+        bottom: -15px; right: -10px;
+        animation: none; /* Tắt animation bay bay cho đỡ tốn pin */
+    }
+
+    /* 2. Typography Mobile */
+    .svc-num {
+        font-size: 3rem; /* Số 01, 02 nhỏ lại */
+        opacity: 0.1; /* Mờ đi để không rối mắt */
+        position: absolute; top: -40px; left: 0;
+        margin: 0;
+    }
+    .svc-text-col {
+        position: relative;
+        padding-top: 10px;
+        text-align: left; /* Căn trái dễ đọc hơn căn giữa */
+    }
+    .svc-text-col h2 {
+        font-size: 1.6rem;
+        margin-bottom: 15px;
+    }
+    
+    /* List tính năng */
+    .svc-features li {
+        font-size: 15px;
+        margin-bottom: 8px;
+    }
+    
+    /* Nút CTA full width */
+    .btn-svc-detail {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin-top: 20px;
+    }
+}
