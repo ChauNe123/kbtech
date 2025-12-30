@@ -113,61 +113,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 2.2. MOBILE MENU TOGGLE (OPTIMIZED) ---
-const menuToggle = document.querySelector('.menu-toggle');
-const mainNav = document.querySelector('.main-nav');
-const body = document.body;
+    // --- 2.2. MOBILE MENU TOGGLE ---
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mainNav = document.querySelector('.main-nav');
 
-function checkMobileMenu() {
-    if (!menuToggle || !mainNav) return;
-    if (window.innerWidth <= 900) {
-        menuToggle.style.display = 'block';
-    } else {
-        menuToggle.style.display = 'none';
-        mainNav.classList.remove('open');
-        body.style.overflow = ''; // Trả lại scroll khi về desktop
-    }
-}
-
-if (menuToggle && mainNav) {
-    checkMobileMenu();
-    window.addEventListener('resize', checkMobileMenu);
-    
-    // Toggle Menu
-    menuToggle.addEventListener('click', (e) => {
-        e.stopPropagation(); // Ngăn sự kiện click lan ra ngoài
-        mainNav.classList.toggle('open');
-        
-        // Khóa cuộn trang khi mở menu để trải nghiệm tốt hơn
-        if (mainNav.classList.contains('open')) {
-            body.style.overflow = 'hidden'; 
-            menuToggle.innerHTML = '<span></span><i class="fas fa-times" style="font-size:24px; color:#fff"></i>'; // Đổi icon thành X
-            menuToggle.classList.add('active'); // Thêm class để CSS nếu cần
+    function checkMobileMenu() {
+        if (!menuToggle || !mainNav) return;
+        if (window.innerWidth <= 900) {
+            menuToggle.style.display = 'block';
+            mainNav.classList.remove('open');
         } else {
-            body.style.overflow = '';
-            menuToggle.innerHTML = '<span></span><span></span><span></span>'; // Trả lại hamburger
-            menuToggle.classList.remove('active');
-        }
-    });
-
-    // Bấm ra ngoài (hoặc bấm vào link) để đóng menu
-    document.addEventListener('click', (e) => {
-        if (mainNav.classList.contains('open') && !mainNav.contains(e.target) && e.target !== menuToggle) {
+            menuToggle.style.display = 'none';
             mainNav.classList.remove('open');
-            body.style.overflow = '';
-            menuToggle.innerHTML = '<span></span><span></span><span></span>';
         }
-    });
+    }
 
-    // Bấm vào link bên trong menu cũng tự đóng
-    mainNav.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            mainNav.classList.remove('open');
-            body.style.overflow = '';
-            menuToggle.innerHTML = '<span></span><span></span><span></span>';
-        });
-    });
-}
+    if (menuToggle && mainNav) {
+        checkMobileMenu();
+        window.addEventListener('resize', checkMobileMenu);
+        menuToggle.addEventListener('click', () => mainNav.classList.toggle('open'));
+    }
 
 
     // ====================================================
