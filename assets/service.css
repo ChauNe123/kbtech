@@ -562,3 +562,87 @@ body {
         margin-top: 20px;
     }
 }
+
+/* ======================================================
+   MOBILE FIX: CONSULT MODAL (Thêm vào cuối service.css)
+====================================================== */
+@media (max-width: 768px) {
+    /* 1. Chỉnh khung Modal để không bị tràn màn hình */
+    .consult-modal {
+        padding: 10px; /* Chừa lề nhỏ */
+        align-items: center; /* Căn giữa màn hình */
+    }
+
+    .consult-box {
+        max-height: 85vh; /* Chỉ cho cao tối đa 85% màn hình */
+        overflow-y: auto; /* QUAN TRỌNG: Cho phép cuộn nội dung bên trong */
+        width: 100%;
+        display: block; /* Đảm bảo khối để cuộn mượt */
+        border-radius: 12px;
+        position: relative; /* Để định vị nút đóng */
+    }
+
+    /* 2. Nút Tắt (Close) - Làm to, màu đỏ, nổi hẳn lên */
+    .close-consult {
+        position: fixed; /* Dính chặt trên màn hình modal (hoặc dùng absolute nếu muốn trôi theo) */
+        /* Tuy nhiên dùng absolute bên trong box scroll sẽ tốt hơn cho UX này */
+        position: absolute; 
+        top: 10px; 
+        right: 10px;
+        width: 40px; height: 40px; /* Nút to dễ bấm */
+        background: #cc0000; /* Màu đỏ nổi bật */
+        color: #fff;
+        border-radius: 50%;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        z-index: 100; /* Luôn nằm trên cùng */
+        display: flex; align-items: center; justify-content: center;
+        font-size: 20px;
+    }
+
+    /* 3. Tối ưu nội dung bên trong cho gọn */
+    .consult-grid {
+        flex-direction: column; /* Xếp dọc */
+    }
+
+    .consult-info-col {
+        padding: 20px 15px; /* Giảm padding */
+        min-height: auto;
+        text-align: left;
+        background: #1a1a2e; /* Giữ nền tối */
+    }
+
+    /* Ẩn ảnh nền to đùng ở cột trái để đỡ tốn chỗ */
+    .consult-info-col img {
+        display: none; 
+    }
+
+    .consult-info-col h3 {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+        margin-top: 0;
+        padding-right: 30px; /* Tránh đè lên nút close */
+    }
+
+    .benefit-list {
+        margin-top: 10px;
+        margin-bottom: 0;
+    }
+    .benefit-list li {
+        font-size: 13px;
+        margin-bottom: 5px;
+    }
+
+    /* Phần Form nhập liệu */
+    .consult-form-col {
+        padding: 20px 15px;
+        background: #fff;
+    }
+    
+    .form-header h4 { font-size: 1.2rem; }
+    .form-group label { font-size: 12px; }
+    .form-control { padding: 10px; }
+    
+    /* Khoảng cách nút gửi */
+    .action-buttons { gap: 10px; }
+    .btn-action-big { padding: 10px; }
+}

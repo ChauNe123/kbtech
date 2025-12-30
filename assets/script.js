@@ -648,3 +648,53 @@ Vui lòng báo giá cho tôi sớm nhất. Xin cảm ơn!`;
 
 });
 
+// ======================================================
+// AUTO WORKING HOURS CHECK (Phiên bản Fix lỗi giờ)
+// ======================================================
+function checkSystemStatus() {
+    const textEl = document.getElementById('sys-text');
+    const dotEl = document.getElementById('sys-dot');
+    
+    if (!textEl || !dotEl) return;
+
+    // --- 1. TÍNH GIỜ VIỆT NAM (UTC+7) CHÍNH XÁC TUYỆT ĐỐI ---
+    // Lấy giờ hiện tại của máy
+    const now = new Date();
+    // Chuyển về giờ gốc (UTC)
+    const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+    // Cộng thêm 7 tiếng để ra giờ VN
+    const vnTime = new Date(utc + (3600000 * 7));
+
+    const currentHour = vnTime.getHours(); // Giờ (0-23)
+    const currentDay = vnTime.getDay();    // Thứ (0=CN, 1=T2...)
+
+    // --- LOG KIỂM TRA (Bấm F12 -> Console để xem) ---
+    console.log("Giờ VN hiện tại code đọc được là:", currentHour + " giờ");
+
+    // --- 2. CẤU HÌNH ---
+    const startHour = 9;  // 9h00
+    const endHour = 17;   // 17h00 (Hết 16:59 là nghỉ)
+
+    // Điều kiện: Không phải Chủ Nhật (0) VÀ Trong khung giờ 9 -> 16
+    const isWorkingDay = (currentDay !== 0); 
+    const isWorkingHour = (currentHour >= startHour && currentHour < endHour);
+
+    // --- 3. HIỂN THỊ ---
+    if (isWorkingDay && isWorkingHour) {
+        // ONLINE
+        textEl.textContent = "System Online";
+        textEl.className = "sys-online";
+        dotEl.className = "status-dot dot-online";
+    } else {
+        // OFFLINE
+        textEl.textContent = "System Offline";
+        textEl.className = "sys-offline";
+        dotEl.className = "status-dot dot-offline";
+    }
+}
+
+// Chạy ngay khi web tải xong
+document.addEventListener('DOMContentLoaded', checkSystemStatus);
+
+// Cập nhật mỗi 10 giây (Check nhanh hơn cho bạn test)
+setInterval(checkSystemStatus, 10000);

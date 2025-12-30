@@ -1408,74 +1408,91 @@ body {
 }
 
 /* ======================================================
-   MOBILE OPTIMIZATION PATCH (BỔ SUNG CUỐI FILE STYLE.CSS)
+   MOBILE HERO BANNER: FULL SCREEN & CENTER (BẢN CHUẨN)
+   Thêm vào cuối file style.css
 ====================================================== */
 @media (max-width: 768px) {
-    /* 1. Tăng vùng chạm cho Menu Mobile */
-    .menu-toggle {
-        width: 44px; height: 44px; /* Chuẩn Apple/Google cho nút bấm */
-        display: flex; align-items: center; justify-content: center;
-        font-size: 24px;
-    }
-
-    /* 2. Menu Mobile tràn màn hình đẹp hơn */
-    .main-nav.open {
-        width: 100%; /* Full màn hình thay vì 240px */
-        background: rgba(255, 255, 255, 0.98);
-        backdrop-filter: blur(10px);
-        padding-top: 60px; /* Tránh bị che bởi header */
-    }
-    .main-nav.open ul li a {
-        font-size: 18px;
-        padding: 15px 30px; /* Dễ bấm hơn */
-        border-bottom: 1px solid #eee;
-    }
-
-    /* 3. Hero Section: Giảm padding để nội dung không bị đẩy quá xa */
+    /* 1. Khung bao ngoài: Luôn Full màn hình điện thoại */
     .hero-section.hero-diamond {
-        padding-top: 120px; /* Giảm khoảng cách trên */
-        min-height: auto;
-    }
-    .diamond-content {
-        padding: 30px 15px; /* Thu gọn padding nội dung */
-    }
-    .diamond-title {
-        font-size: 2rem; /* Giảm size chữ tiêu đề chính */
-    }
-    
-    /* 4. Nút bấm trên Mobile: Full width cho dễ bấm */
-    .diamond-actions {
+        position: relative;
+        width: 100%;
+        height: 100vh !important; /* Chiếm trọn chiều cao màn hình */
+        min-height: 600px; /* Đảm bảo không bị quá ngắn trên đt nhỏ */
+        padding: 0 !important; /* Bỏ padding thừa gây lệch */
+        margin: 0;
+        overflow: hidden; /* Cắt bỏ phần thừa */
+        
+        /* Căn giữa nội dung bằng Flexbox */
+        display: flex;
         flex-direction: column;
-        width: 100%;
-        padding: 0 20px;
-    }
-    .btn-shine-red, .btn-glass-border {
-        width: 100%;
-        text-align: center;
         justify-content: center;
-        padding: 14px;
+        align-items: center;
     }
 
-    /* 5. Footer: Căn giữa và giãn dòng */
-    .footer-grid {
-        gap: 40px;
-        text-align: left; /* Mobile đọc căn trái dễ hơn căn giữa */
+    /* 2. Video nền: Tự động zoom để lấp đầy màn hình dọc */
+    #bg-video {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%;
+        height: 100% !important;
+        object-fit: cover; /* QUAN TRỌNG: Giúp video đẹp, không méo */
+        z-index: 0;
     }
-    .footer-col h4::after {
-        left: 0; transform: none; /* Reset gạch chân về bên trái */
+
+    /* 3. Lớp phủ đen mờ: Giúp chữ nổi bật hơn trên nền video */
+    .hero-section.hero-diamond::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0, 0, 0, 0.4); /* Đen mờ 40% */
+        z-index: 1;
     }
-    
-    /* 6. Floating Contact: Thu nhỏ chút để không che nội dung */
-    .circle-btn {
-        width: 45px; height: 45px; font-size: 20px;
+
+    /* 4. Nội dung chính: Nổi lên trên cùng và căn giữa */
+    .diamond-content {
+        position: relative;
+        z-index: 2; /* Nằm trên video và lớp phủ */
+        width: 90%; /* Cách lề 2 bên một chút */
+        max-width: 400px;
+        text-align: center;
+        margin: 0 auto;
+        padding: 0 15px;
+        
+        /* Reset các hiệu ứng xoay nếu có từ PC */
+        transform: none !important; 
+        top: auto; left: auto;
     }
-    .floating-contact.is-floating {
-        bottom: 80px; /* Cao hơn chút để tránh footer bar của iPhone */
+
+    /* 5. Chỉnh Font chữ Mobile cho cân đối */
+    .diamond-title {
+        font-size: 2.2rem !important; /* To vừa đủ, không quá khổ */
+        line-height: 1.3;
+        margin-bottom: 15px;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.5); /* Đổ bóng chữ cho đẹp */
+    }
+
+    .diamond-subtitle {
+        font-size: 1rem !important;
+        margin-bottom: 25px;
+        color: #ddd;
+        display: block; /* Hiện đầy đủ mô tả */
+    }
+
+    /* 6. Nút bấm: Xếp dọc hoặc ngang tùy ý (Ở đây để ngang cho đẹp) */
+    .diamond-actions {
+        display: flex;
+        flex-direction: row; /* Xếp ngang */
+        justify-content: center;
+        gap: 15px;
+        width: 100%;
+    }
+
+    .btn-shine-red, .btn-glass-border {
+        width: auto !important;
+        padding: 12px 25px;
+        font-size: 14px;
+        border-radius: 30px; /* Bo tròn nút cho hiện đại */
     }
 }
 
-/* Màn hình siêu nhỏ (iPhone SE, Galaxy Fold) */
-@media (max-width: 375px) {
-    .diamond-title { font-size: 1.6rem; }
-    .top-bar-links { display: none; } /* Ẩn bớt link phụ */
-}
