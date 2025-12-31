@@ -171,9 +171,11 @@ if (menuToggle && mainNav) {
 
 
     // ====================================================
-    // 3. HERO SECTION (SLIDER CHÍNH)
+    // 3. HERO SECTION (SLIDER CHÍNH & ĐỒNG BỘ BACKGROUND - NO DELAY)
     // ====================================================
     const heroSlider = document.querySelector('.hero-slider');
+    const bgVideo = document.getElementById('bgVideo'); 
+
     if (heroSlider) {
         const heroImgs = heroSlider.querySelectorAll('img, video');
         const leftBtn = heroSlider.querySelector('.hero-arrow.left');
@@ -184,7 +186,7 @@ if (menuToggle && mainNav) {
             let heroTimer = null;
             let isSliding = false;
 
-            const initialActive = heroSlider.querySelector('img.active');
+            const initialActive = heroSlider.querySelector('.active');
             if (initialActive) {
                 heroIdx = Array.from(heroImgs).indexOf(initialActive);
             } else {
@@ -192,9 +194,36 @@ if (menuToggle && mainNav) {
                 heroIdx = 0;
             }
 
+            // --- HÀM ĐỔI BACKGROUND TỐC ĐỘ CAO ---
+            function updateBigBackground(newSrc) {
+                if (!bgVideo || !newSrc) return;
+
+                // 1. Kích hoạt hiệu ứng mờ ngay lập tức
+                bgVideo.classList.add('fading'); 
+
+                // 2. ĐỔI NGUỒN NGAY LẬP TỨC (Bỏ delay 500ms cũ)
+                // Dùng setTimeout cực ngắn (50ms) chỉ để trình duyệt kịp nhận diện class 'fading' trước khi đổi
+                setTimeout(() => {
+                    bgVideo.src = newSrc;
+                    if (bgVideo.tagName === 'VIDEO') {
+                        bgVideo.play().catch(() => {}); 
+                    }
+                }, 50);
+
+                // 3. Hiện rõ lại nhanh chóng (300ms) thay vì chờ lâu
+                setTimeout(() => {
+                    bgVideo.classList.remove('fading');
+                }, 300); 
+            }
+            // -------------------------------------
+
             function showSlide(newIdx, direction = 1) {
                 if (isSliding || newIdx === heroIdx || !heroImgs[newIdx]) return;
                 isSliding = true;
+
+                // Gọi hàm đổi nền ngay khi bắt đầu chuyển slide
+                const nextSlideSrc = heroImgs[newIdx].getAttribute('src');
+                updateBigBackground(nextSlideSrc);
 
                 const oldIdx = heroIdx;
                 const outClass = direction === 1 ? 'slide-out-left' : 'slide-out-right';
@@ -203,7 +232,7 @@ if (menuToggle && mainNav) {
                 const newSlide = heroImgs[newIdx];
 
                 newSlide.classList.add(inClass);
-                void newSlide.offsetWidth; // Force reflow
+                void newSlide.offsetWidth; 
 
                 setTimeout(() => {
                     newSlide.classList.add('active');
@@ -219,13 +248,28 @@ if (menuToggle && mainNav) {
                 }, 700);
             }
 
-            rightBtn.addEventListener('click', () => showSlide((heroIdx + 1) % heroImgs.length, 1));
-            leftBtn.addEventListener('click', () => showSlide((heroIdx - 1 + heroImgs.length) % heroImgs.length, 0));
+            rightBtn.addEventListener('click', () => {
+                showSlide((heroIdx + 1) % heroImgs.length, 1);
+                resetTimer();
+            });
+            
+            leftBtn.addEventListener('click', () => {
+                showSlide((heroIdx - 1 + heroImgs.length) % heroImgs.length, 0);
+                resetTimer();
+            });
 
             function autoSlide() {
-                heroTimer = setInterval(() => showSlide((heroIdx + 1) % heroImgs.length, 1), 3500);
+                heroTimer = setInterval(() => {
+                    showSlide((heroIdx + 1) % heroImgs.length, 1);
+                }, 5000); 
             }
-            autoSlide();
+            
+            function resetTimer() {
+                clearInterval(heroTimer);
+                autoSlide();
+            }
+            
+            autoSlide(); 
         }
     }
 
@@ -280,7 +324,7 @@ Vui lòng báo giá cho tôi sớm nhất. Xin cảm ơn!`;
 
         // DÙNG LINK GMAIL TRỰC TIẾP (Bỏ mailto cũ đi)
         // Cách này ép trình duyệt mở trang web Gmail, không bao giờ bị lỗi "chọn app"
-        const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=chounguyen308@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=tuanhai@kbtech.vn&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
         if(btnEmail) {
             btnEmail.href = gmailLink;
