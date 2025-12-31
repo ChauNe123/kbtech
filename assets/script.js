@@ -171,65 +171,64 @@ if (menuToggle && mainNav) {
 
 
     // ====================================================
-    // 3. HERO SECTION (SLIDER CHÍNH & ĐỒNG BỘ BACKGROUND - NO DELAY)
+    // 3. HERO SECTION (BẢN FIX TỐI ƯU CHO CPANEL - NO DELAY)
     // ====================================================
     const heroSlider = document.querySelector('.hero-slider');
     const bgVideo = document.getElementById('bgVideo'); 
 
     if (heroSlider) {
-        const heroImgs = heroSlider.querySelectorAll('img, video');
+        const heroItems = heroSlider.querySelectorAll('img, video');
         const leftBtn = heroSlider.querySelector('.hero-arrow.left');
         const rightBtn = heroSlider.querySelector('.hero-arrow.right');
         
-        if(heroImgs.length > 0 && leftBtn && rightBtn) {
+        if(heroItems.length > 0 && leftBtn && rightBtn) {
             let heroIdx = 0;
             let heroTimer = null;
             let isSliding = false;
 
             const initialActive = heroSlider.querySelector('.active');
             if (initialActive) {
-                heroIdx = Array.from(heroImgs).indexOf(initialActive);
+                heroIdx = Array.from(heroItems).indexOf(initialActive);
             } else {
-                heroImgs[0].classList.add('active');
+                heroItems[0].classList.add('active');
                 heroIdx = 0;
             }
 
-            // --- HÀM ĐỔI BACKGROUND TỐC ĐỘ CAO ---
+            // --- HÀM ĐỔI BACKGROUND KHÔNG DELAY ---
             function updateBigBackground(newSrc) {
                 if (!bgVideo || !newSrc) return;
 
-                // 1. Kích hoạt hiệu ứng mờ ngay lập tức
+                // 1. Mờ nhanh
                 bgVideo.classList.add('fading'); 
 
-                // 2. ĐỔI NGUỒN NGAY LẬP TỨC (Bỏ delay 500ms cũ)
-                // Dùng setTimeout cực ngắn (50ms) chỉ để trình duyệt kịp nhận diện class 'fading' trước khi đổi
+                // 2. Đổi nguồn và ép Load lại (Quan trọng cho cPanel)
                 setTimeout(() => {
                     bgVideo.src = newSrc;
                     if (bgVideo.tagName === 'VIDEO') {
+                        bgVideo.load(); // Ép server gửi luồng dữ liệu mới
                         bgVideo.play().catch(() => {}); 
                     }
-                }, 50);
+                }, 40); // 40ms là đủ để nhận diện đổi nguồn
 
-                // 3. Hiện rõ lại nhanh chóng (300ms) thay vì chờ lâu
+                // 3. Hiện rõ lại
                 setTimeout(() => {
                     bgVideo.classList.remove('fading');
                 }, 300); 
             }
-            // -------------------------------------
 
             function showSlide(newIdx, direction = 1) {
-                if (isSliding || newIdx === heroIdx || !heroImgs[newIdx]) return;
+                if (isSliding || newIdx === heroIdx || !heroItems[newIdx]) return;
                 isSliding = true;
 
-                // Gọi hàm đổi nền ngay khi bắt đầu chuyển slide
-                const nextSlideSrc = heroImgs[newIdx].getAttribute('src');
-                updateBigBackground(nextSlideSrc);
+                // Đồng bộ nền ngay lập tức
+                const nextSrc = heroItems[newIdx].getAttribute('src');
+                updateBigBackground(nextSrc);
 
                 const oldIdx = heroIdx;
                 const outClass = direction === 1 ? 'slide-out-left' : 'slide-out-right';
                 const inClass = direction === 1 ? 'slide-in-right' : 'slide-in-left';
-                const oldSlide = heroImgs[oldIdx];
-                const newSlide = heroImgs[newIdx];
+                const oldSlide = heroItems[oldIdx];
+                const newSlide = heroItems[newIdx];
 
                 newSlide.classList.add(inClass);
                 void newSlide.offsetWidth; 
@@ -249,26 +248,23 @@ if (menuToggle && mainNav) {
             }
 
             rightBtn.addEventListener('click', () => {
-                showSlide((heroIdx + 1) % heroImgs.length, 1);
+                showSlide((heroIdx + 1) % heroItems.length, 1);
                 resetTimer();
             });
-            
             leftBtn.addEventListener('click', () => {
-                showSlide((heroIdx - 1 + heroImgs.length) % heroImgs.length, 0);
+                showSlide((heroIdx - 1 + heroItems.length) % heroItems.length, 0);
                 resetTimer();
             });
 
             function autoSlide() {
                 heroTimer = setInterval(() => {
-                    showSlide((heroIdx + 1) % heroImgs.length, 1);
+                    showSlide((heroIdx + 1) % heroItems.length, 1);
                 }, 5000); 
             }
-            
             function resetTimer() {
                 clearInterval(heroTimer);
                 autoSlide();
             }
-            
             autoSlide(); 
         }
     }
