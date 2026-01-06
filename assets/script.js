@@ -89,6 +89,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    /*1.3 --- ĐOẠN CODE MỚI: Kích hoạt tìm kiếm trên Mobile --- */
+const mobileInput = document.getElementById('mobileSearchInput');
+const mobileBtn = document.getElementById('mobileSearchBtn');
+
+// Tái sử dụng hàm executeSearch() cũ của bạn
+    if (mobileBtn) {
+    mobileBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        executeSearch(); // Gọi hàm tìm kiếm chung
+    });
+    }
+
+    if (mobileInput) {
+    mobileInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            executeSearch(); // Gọi hàm tìm kiếm chung
+        }
+    });
+    
+    // Đồng bộ dữ liệu: Gõ ở mobile thì update vào biến searchInput chính để hàm executeSearch hiểu
+    mobileInput.addEventListener('input', (e) => {
+        if(searchInput) searchInput.value = e.target.value;
+    });
+    }    
 
     // ====================================================
     // 2. HEADER & NAVIGATION (MENU CHÍNH)

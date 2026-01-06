@@ -1559,3 +1559,58 @@ body {
         margin-bottom: 10px;
     }
 }
+
+/* ======================================================
+   MOBILE ONLY STYLES (Chỉ áp dụng cho điện thoại)
+   ====================================================== */
+
+/* 1. Mặc định trên PC: Ẩn ô tìm kiếm mobile đi */
+.mobile-search-box {
+    display: none;
+}
+
+/* 2. Logic riêng cho màn hình nhỏ (Dưới 900px) */
+@media (max-width: 900px) {
+    
+    /* ẨN THANH TRẮNG TRÊN CÙNG (Top Bar) */
+    .top-bar {
+        display: none !important;
+    }
+
+    /* Đẩy Header lên sát mép trên (vì đã mất thanh trắng) */
+    .main-header {
+        top: 0 !important;
+        height: 70px; /* Thu gọn chiều cao header chút cho đẹp */
+    }
+
+    /* HIỆN Ô TÌM KIẾM MOBILE */
+    .mobile-search-box {
+        display: flex;
+        align-items: center;
+        background: #f1f1f1;
+        border-radius: 20px;
+        padding: 5px 15px;
+        margin-left: auto; /* Đẩy sang phải */
+        margin-right: 15px;
+        width: 180px; /* Chiều rộng vừa phải */
+        border: 1px solid #ddd;
+    }
+
+    .mobile-search-box input {
+        border: none;
+        background: transparent;
+        outline: none;
+        font-size: 13px;
+        width: 100%;
+        color: #333;
+    }
+
+    .mobile-search-box button {
+        border: none; background: none; color: #666; padding: 0;
+    }
+    
+    /* Chỉnh lại Logo nhỏ hơn chút để vừa ô tìm kiếm */
+    .logo img {
+        height: 32px;
+    }
+}
