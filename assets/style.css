@@ -1503,3 +1503,59 @@ body {
 #bgVideo.fading {
     opacity: 0; /* Khi có class này thì mờ đi */
 }
+
+/* ======================================================
+   MOBILE FIXES (Thêm vào cuối file style.css)
+   ====================================================== */
+
+/* 1. Fix lỗi ô tìm kiếm bị tràn trên điện thoại nhỏ (iPhone SE, 5S) */
+@media (max-width: 480px) {
+    .top-bar .container {
+        gap: 10px; /* Giảm khoảng cách giữa các phần tử */
+        padding: 0 10px; /* Giảm lề 2 bên */
+    }
+
+    .top-bar-search input[type="text"] {
+        width: 100%;       /* Cho phép co giãn */
+        max-width: 160px;  /* Giới hạn chiều rộng tối đa */
+        font-size: 13px;   /* Giảm cỡ chữ 1 chút */
+    }
+    
+    /* Ẩn bớt chữ "Trang chủ", "Liên hệ" nếu quá chật, chỉ hiện icon */
+    .top-bar-links span.top-bar-item a {
+        font-size: 12px;
+    }
+}
+
+/* 2. Đẩy nút Zalo/Gọi lên cao hơn để không che Footer hoặc Copyright */
+@media (max-width: 768px) {
+    .floating-contact.is-floating {
+        bottom: 90px !important; /* Đẩy lên cao hơn (mặc định là 20px/30px) */
+        left: 20px !important;
+    }
+    
+    /* Hoặc thêm khoảng trắng dưới cùng trang web để lướt hết nội dung */
+    body {
+        padding-bottom: 80px;
+    }
+}
+
+/* 3. Tinh chỉnh lại Hero Section trên Mobile cho cân đối hơn */
+@media (max-width: 768px) {
+    .diamond-title {
+        font-size: 1.8rem !important; /* Giảm size chữ tiêu đề */
+    }
+    .diamond-desc {
+        font-size: 14px !important;   /* Giảm size mô tả */
+        margin-bottom: 25px !important;
+    }
+    /* Xếp dọc 2 nút hành động nếu màn hình quá bé */
+    .diamond-actions {
+        flex-wrap: wrap;
+    }
+    .btn-shine-red, .btn-glass-border {
+        width: 100%;           /* Nút full chiều rộng */
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+}
