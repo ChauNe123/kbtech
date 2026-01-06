@@ -89,31 +89,45 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /*1.3 --- ĐOẠN CODE MỚI: Kích hoạt tìm kiếm trên Mobile --- */
-const mobileInput = document.getElementById('mobileSearchInput');
-const mobileBtn = document.getElementById('mobileSearchBtn');
+    /*1.3 /* ====================================================
+   LOGIC TÌM KIẾM CHO MOBILE (KHÔNG ĐỤNG CODE PC)
+   ==================================================== */
+document.addEventListener('DOMContentLoaded', () => {
+    const mInput = document.getElementById('mobileSearchInput');
+    const mBtn = document.getElementById('mobileSearchBtn');
 
-// Tái sử dụng hàm executeSearch() cũ của bạn
-    if (mobileBtn) {
-    mobileBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        executeSearch(); // Gọi hàm tìm kiếm chung
-    });
-    }
-
-    if (mobileInput) {
-    mobileInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
+    // Tái sử dụng lại logic tìm kiếm cũ nhưng áp dụng cho nút mới
+    if (mBtn && mInput) {
+        mBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            executeSearch(); // Gọi hàm tìm kiếm chung
-        }
-    });
-    
-    // Đồng bộ dữ liệu: Gõ ở mobile thì update vào biến searchInput chính để hàm executeSearch hiểu
-    mobileInput.addEventListener('input', (e) => {
-        if(searchInput) searchInput.value = e.target.value;
-    });
-    }    
+            const query = mInput.value.toLowerCase().trim();
+            
+            // Logic tìm kiếm giống hệt PC
+            const searchData = [
+                { keys: ["máy chủ", "server", "vps"], link: "service.html#svc-server" },
+                { keys: ["email", "mail"], link: "service.html#svc-email" },
+                { keys: ["bảo mật", "security"], link: "service.html#svc-security" },
+                { keys: ["sửa chữa", "pc", "laptop"], link: "service.html#svc-repair" },
+                { keys: ["nas", "lưu trữ"], link: "service.html#svc-nas" },
+                { keys: ["helpdesk", "it"], link: "service.html#svc-helpdesk" },
+                { keys: ["camera", "an ninh"], link: "service.html#svc-camera" },
+                { keys: ["build pc", "gaming"], link: "service.html#svc-buildpc" },
+                { keys: ["liên hệ", "sđt"], link: "#contactDock" }
+            ];
+
+            let foundLink = null;
+            for (let item of searchData) {
+                if (item.keys.some(key => query.includes(key))) {
+                    foundLink = item.link;
+                    break;
+                }
+            }
+
+            if (foundLink) window.location.href = foundLink;
+            else alert("Không tìm thấy kết quả! Thử từ khóa: server, camera, email...");
+        });
+    }
+});
 
     // ====================================================
     // 2. HEADER & NAVIGATION (MENU CHÍNH)
