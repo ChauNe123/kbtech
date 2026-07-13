@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Sao chị ko rep tin nhắn em? 🥺</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background Sparkles and Floating Hearts -->
+    <div class="floating-bg" id="floating-bg"></div>
+
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <h1 class="main-title">Sao chị ko rep tin nhắn em? 🥺</h1>
+            <p class="subtitle">Em đợi nãy giờ lâu quá trời quá đất luôn á...</p>
+        </header>
+
+        <!-- Main Card -->
+        <main class="main-card">
+            <!-- Decorated Image Result Section (Visible on load) -->
+            <section class="section-result" id="result-section">
+                <div class="result-container">
+                    <!-- Polaroid Frame -->
+                    <div class="polaroid-frame-wrapper" id="polaroid-wrapper">
+                        <div class="polaroid-frame">
+                            <div class="photo-area">
+                                <img src="lover_photo.png" id="decorated-img" alt="Ảnh xinh của bạn">
+                                <!-- HTML Stickers Layer (positioned on top) -->
+                                <div class="stickers-container">
+                                    <div class="sticker cat-ears">🐱</div>
+                                    <div class="sticker pink-blush-l">🌸</div>
+                                    <div class="sticker pink-blush-r">🌸</div>
+                                    <div class="sticker cute-bow">🎀</div>
+                                    <div class="sticker sparkle-1">✨</div>
+                                    <div class="sticker sparkle-2">🌟</div>
+                                    <div class="sticker floating-heart">💖</div>
+                                </div>
+                            </div>
+                            <div class="polaroid-caption">
+                                <input type="text" id="caption-input" value="Bé đáng yêu của chị, đừng giận em nha... 🥺💕" placeholder="Viết gì đó ngọt ngào...">
+                                <span class="caption-date" id="current-date">13/07/2026</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action buttons for image -->
+                    <div class="result-actions">
+                        <button class="btn btn-success" id="btn-download" style="width: 100%;">Tải ảnh xinh về máy 💝</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Action Response Buttons -->
+        <section class="action-buttons-container">
+            <h2 class="prompt-text">Tại sao chị hông rep em dọ? 🥺👉👈</h2>
+            <div class="buttons-grid">
+                <button class="response-btn btn-angry" data-modal="modal-angry">
+                    <span class="btn-emoji">😡</span>
+                    <span class="btn-label">Đang giận</span>
+                </button>
+                <button class="response-btn btn-sad" data-modal="modal-sad">
+                    <span class="btn-emoji">😢</span>
+                    <span class="btn-label">Đang buồn</span>
+                </button>
+                <button class="response-btn btn-tired" data-modal="modal-tired">
+                    <span class="btn-emoji">🥱</span>
+                    <span class="btn-label">Đang mệt</span>
+                </button>
+                <button class="response-btn btn-other" data-modal="modal-other">
+                    <span class="btn-emoji">💬</span>
+                    <span class="btn-label">Lí do khác</span>
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Hidden canvas used for rendering the Polaroid during download -->
+    <canvas id="render-canvas" style="display: none;"></canvas>
+
+    <!-- Modal: Đang giận 😡 -->
+    <div class="modal-overlay" id="modal-angry">
+        <div class="modal-card">
+            <button class="modal-close">&times;</button>
+            <div class="modal-emoji">😡 ➔ 🥺</div>
+            <h2>Chị đang giận em hả...? 😭</h2>
+            <p>Ngoan ngoan thương thương mà, em biết lỗi rồi! Chị kéo thanh trượt bên dưới về 0% để nguôi giận nha...</p>
+            
+            <div class="anger-slider-container">
+                <span class="slider-emoji" id="slider-emoji-status">😡</span>
+                <input type="range" min="0" max="100" value="100" class="anger-slider" id="anger-slider">
+                <div class="slider-percentage" id="slider-percent">Mức độ giận: 100%</div>
+            </div>
+
+            <div class="modal-footer-actions" style="position: relative; min-height: 60px; width: 100%;">
+                <button class="btn btn-disabled" id="btn-forgive" disabled>Hết giận em nha 💕</button>
+                <button class="btn btn-danger" id="btn-never-forgive" style="touch-action: none; position: absolute;">Hông thèm hết giận! 😤</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Đang buồn 😢 -->
+    <div class="modal-overlay" id="modal-sad">
+        <div class="modal-card">
+            <button class="modal-close">&times;</button>
+            <div class="modal-emoji">😢</div>
+            <h2>Chị đang buồn hả dọ? 🥺</h2>
+            <p>Đừng buồn nữa nha, em thương chị nhất trên đời luôn á! Nhấp nút dưới để em truyền năng lượng vui vẻ nha!</p>
+            
+            <div class="sad-interaction">
+                <div class="cute-hug-mascot">🫂💖🍬</div>
+                <button class="btn btn-primary btn-hug" id="btn-hug">Nhận ôm ôm ngọt ngào 🫂</button>
+                <button class="btn btn-secondary btn-candy" id="btn-candy">Ăn kẹo ngọt hết buồn 🍭</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Đang mệt 🥱 -->
+    <div class="modal-overlay" id="modal-tired">
+        <div class="modal-card">
+            <button class="modal-close">&times;</button>
+            <div class="modal-emoji">🥱</div>
+            <h2>Chị làm việc mệt mỏi lắm đúng hông? 🥺</h2>
+            <p>Sạc pin năng lượng tình yêu siêu cấp vô cực để khoẻ lại ngay nè chị iu ơi!</p>
+            
+            <div class="battery-section">
+                <div class="battery-container">
+                    <div class="battery-head"></div>
+                    <div class="battery-body">
+                        <div class="battery-level" id="battery-level" style="width: 15%"></div>
+                        <div class="battery-text" id="battery-text">15% (Yếu sinh lực)</div>
+                    </div>
+                </div>
+                <button class="btn btn-success btn-pulse" id="btn-charge">Sạc pin tình yêu ⚡</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Lí do khác 💬 -->
+    <div class="modal-overlay" id="modal-other">
+        <div class="modal-card">
+            <button class="modal-close">&times;</button>
+            <div class="modal-emoji">✉️</div>
+            <h2>Chị bận hay có lý do gì khác dọ? 🥺</h2>
+            <p>Nói nhỏ cho em biết lý do với nha, em hứa sẽ ngoan và lắng nghe chị mà...</p>
+            
+            <div class="other-reason-form">
+                <textarea id="reason-text" placeholder="Nhập lý do tại đây nha chị iu... (Ví dụ: Chị đang đi tắm, đang học bài, hay lỡ tay làm rớt điện thoại...)"></textarea>
+                <button class="btn btn-primary" id="btn-send-reason">Gửi thư cho em ✉️</button>
+            </div>
+
+            <div class="reply-card d-none" id="reply-card">
+                <div class="envelope-icon">💝</div>
+                <h3>Em đã nhận được thư rồi ạ!</h3>
+                <p class="reply-text">"Dạ em biết rồi, chị iu cứ làm việc/nghỉ ngơi đi nha. Em sẽ ngồi ngoan đợi chị rep. Thương chị nhiều nhiều lắm! 🌸💕"</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
